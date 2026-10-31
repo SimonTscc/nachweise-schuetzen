@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nachweise für Schützen – SSV Stuttgart Untertürkheim</title>
+  <link rel="icon" href="vereinlogo.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="kopf">
+    <div class="kopf-in">
+      <img src="vereinlogo.png" alt="">
+      <div class="kopf-titel">
+        <small>Sportschützenverein Stuttgart Untertürkheim e.&#8203;V.</small>
+        <h1>Nachweise für Schützen</h1>
+      </div>
+      <button type="button" class="abmelden" onclick="NW.logout()">Abmelden</button>
+    </div>
+  </header>
+
+  <main>
+    <p class="einleitung">Wettkampfnachweise für die Waffenbehörde: Meisterschaften, Rundenwettkämpfe und sonstige Wettkämpfe je Schütze und Jahr. Die Ergebnisse der Vereinsmeisterschaft werden automatisch übernommen.</p>
+    <nav class="menue">
+      <a class="karte-link" href="nachweis.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8M8 17h5"/></svg>
+        <div>
+          <strong>Nachweis</strong>
+          <span>Schütze und Jahr wählen, Meisterschaften und Sonstiges nachtragen, Nachweis drucken</span>
+        </div>
+      </a>
+      <a class="karte-link" href="rwk.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        <div>
+          <strong>Rundenwettkämpfe</strong>
+          <span>Saison und Mannschaften anlegen, Ergebnisse je Wettkampf eintragen</span>
+        </div>
+      </a>
+    </nav>
+  </main>
+
+  <script src="config.js"></script>
+  <script src="disciplines.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

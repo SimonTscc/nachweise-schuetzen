@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nachweis – Nachweise für Schützen</title>
+  <link rel="icon" href="vereinlogo.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="kopf">
+    <div class="kopf-in">
+      <img src="vereinlogo.png" alt="">
+      <div class="kopf-titel">
+        <small>Nachweise für Schützen</small>
+        <h1>Wettkampfnachweis</h1>
+      </div>
+      <a class="zurueck" href="index.html">‹ Übersicht</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="panel">
+      <div class="leiste">
+        <div class="feld feld-breit">Schütze
+          <div id="schuetze"></div>
+        </div>
+        <label class="feld">Jahr
+          <select id="jahr"></select>
+        </label>
+        <button type="button" class="btn btn--primary" id="btnDruck" disabled>Nachweis drucken</button>
+      </div>
+      <p class="meldung" id="auswahlMeldung"></p>
+    </section>
+
+    <div id="inhalt" hidden>
+      <section class="panel">
+        <h2>Meisterschaften</h2>
+        <p class="hinweis">Vereinsmeisterschaft kommt automatisch aus der VM. Kreis, Land und Deutsche hier nachtragen – gespeichert wird beim Verlassen eines Feldes.</p>
+        <div id="meister"></div>
+        <div class="leiste">
+          <label class="feld feld-breit">Weitere Disziplin
+            <select id="neueDisz"></select>
+          </label>
+          <button type="button" class="btn" id="btnDisz">Hinzufügen</button>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>Rundenwettkämpfe</h2>
+        <p class="hinweis">Kommen aus dem Bereich <a href="rwk.html">Rundenwettkämpfe</a> – dort trägt der Vorstand die Ergebnisse je Mannschaft ein.</p>
+        <div id="rwk"></div>
+      </section>
+
+      <section class="panel">
+        <h2>Sonstige Wettkämpfe</h2>
+        <p class="hinweis">Pokalschießen, Freundschaftswettkämpfe und alles, was nicht Meisterschaft oder Rundenwettkampf ist.</p>
+        <div id="sonstiges"></div>
+        <button type="button" class="btn" id="btnSonst">Eintrag hinzufügen</button>
+      </section>
+    </div>
+
+    <section class="druck" id="druck"></section>
+  </main>
+
+  <dialog id="dlgSonst">
+    <form method="dialog" id="formSonst">
+      <h2 id="dlgSonstTitel">Sonstiger Wettkampf</h2>
+      <div class="raster">
+        <label class="feld ganz">Wettkampf
+          <input type="text" name="bezeichnung" required placeholder="z. B. Pokalschießen SV Musterstadt">
+        </label>
+        <label class="feld ganz">Disziplin
+          <select name="disziplin"></select>
+        </label>
+        <label class="feld">Datum
+          <input type="date" name="datum" required>
+        </label>
+        <label class="feld">Ort
+          <input type="text" name="ort">
+        </label>
+        <label class="feld">Ringe
+          <input type="text" name="ringe" inputmode="decimal">
+        </label>
+        <label class="feld">Platzierung
+          <input type="number" name="platz" min="1" step="1">
+        </label>
+      </div>
+      <p class="meldung err" id="sonstFehler"></p>
+      <div class="aktionen">
+        <button type="button" class="btn btn--gefahr links" id="sonstLoeschen" hidden>Löschen</button>
+        <button type="button" class="btn" id="sonstAbbrechen">Abbrechen</button>
+        <button type="submit" class="btn btn--primary">Speichern</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="config.js"></script>
+  <script src="disciplines.js"></script>
+  <script src="app.js"></script>
+  <script src="nachweis.js"></script>
+</body>
+</html>
