@@ -379,7 +379,7 @@
     auswahlFeld.setKader(kader);
     const p = new URLSearchParams(location.search);
     if (p.get("jahr")) elJahr.value = p.get("jahr");
-    else elJahr.value = String(new Date().getFullYear());
+    else elJahr.value = String(window.STANDARD_JAHR || new Date().getFullYear());
     if (p.get("nr")) { auswahlFeld.setValue(p.get("nr")); auswahl(); }
   })();
 })();

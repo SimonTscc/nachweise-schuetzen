@@ -32,6 +32,9 @@ window.VM_CONFIG = {
    Mit einem Passwort meldet sich das Programm bei beiden an. */
 window.AUTH_EMAIL = "verein@ssv-untertuerkheim.de";
 
+/* Jahr, das im Nachweis vorausgewählt ist (= aktuelles Schießjahr der VM) */
+window.STANDARD_JAHR = 2027;
+
 /* Texte für den Ausdruck */
 window.VEREIN = {
   name: "Sportschützenverein Stuttgart Untertürkheim e. V.",
