@@ -276,7 +276,8 @@ window.NW = (function () {
     ];
     const vmJahr = {
       2026: { disziplinen: ["1.10", "2.10", "2.40"],
-        ergebnisse: { "7__2.10": { summe: 361 }, "12__2.10": { summe: 344 }, "3__2.10": { summe: 365 }, "7__2.40": { summe: 271 } },
+        ergebnisse: { "7__2.10": { summe: 361 }, "12__2.10": { summe: 344 }, "3__2.10": { summe: 365 }, "7__2.40": { summe: 271 },
+          "12__2.40": { summe: 0, serien: [0, 0], schuesse: { praezision: [null, null], duell: [null, null] } } }, // nur geöffnet, nicht geschossen
         durchgaenge: [{ tag: "2026-01-10", belegung: { 1: { nr: "7", id: "2.10" } } }] },
     };
     return { store, id, kader, vmJahr };
@@ -370,6 +371,18 @@ window.NW = (function () {
       return leer;
     }
   }
+  // Die VM legt ein Ergebnis-Dokument schon an, sobald jemand die Eingabe
+  // eines Schützen öffnet und etwas antippt – auch ohne einen Schuss (summe 0).
+  // Als geschossen zählt nur, wenn mindestens ein Schuss eingetragen ist
+  // (bzw. bei Endergebnis-Disziplinen ein Ergebnis über 0).
+  function geschossen(e) {
+    if (!e || e.summe == null) return false;
+    if (e.endergebnis) return Number(e.summe) > 0;
+    const s = e.schuesse || {};
+    const schuss = Object.keys(s).some((k) => (Array.isArray(s[k]) ? s[k] : Object.values(s[k] || {})).some((x) => x != null && x !== ""));
+    return schuss || Number(e.summe) > 0;
+  }
+
   // VM-Ergebnisse eines Schützen: [{ disziplin, ringe, platz, von, datum }]
   async function vmFuer(jahr, nr) {
     const v = await vmJahr(jahr);
@@ -377,10 +390,10 @@ window.NW = (function () {
     Object.keys(v.ergebnisse).forEach((key) => {
       const [knr, disz] = key.split("__");
       const e = v.ergebnisse[key];
-      if (String(knr) !== String(nr) || !e || e.summe == null) return;
+      if (String(knr) !== String(nr) || !geschossen(e)) return;
       // Platz: Rang unter allen Ergebnissen dieser Disziplin (gleiche Ringzahl = gleicher Platz)
       const alle = Object.keys(v.ergebnisse)
-        .filter((k) => k.split("__")[1] === disz && v.ergebnisse[k] && v.ergebnisse[k].summe != null)
+        .filter((k) => k.split("__")[1] === disz && geschossen(v.ergebnisse[k]))
         .map((k) => Number(v.ergebnisse[k].summe));
       const platz = alle.filter((s) => s > Number(e.summe)).length + 1;
       let tag = "";
